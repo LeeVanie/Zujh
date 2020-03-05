@@ -1,0 +1,33 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion compile_sdk_version.toInteger()
+    buildToolsVersion build_sdk_version.toString()
+    defaultConfig {
+        applicationId "com.lee.zujh"
+        minSdkVersion min_sdk_version.toInteger()
+        targetSdkVersion target_sdk_version.toInteger()
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:appcompat-v7:$support_version"
+    testImplementation 'junit:junit:4.12'
+    implementation project(path: ':componentlib')
+    if (!homeRunAlone.toBoolean()) {
+        implementation project(path: ':homecomponent')
+    }
+    if(!mineRunAlone.toBoolean()) {
+        implementation project(path: ':minecomponent')
+    }
+}

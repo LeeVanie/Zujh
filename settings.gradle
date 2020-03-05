@@ -1,0 +1,2 @@
+include ':app', ':componentlib', ':homecomponent', ':minecomponent'
+rootProject.name='Zujh'
